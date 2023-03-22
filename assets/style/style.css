@@ -1,0 +1,32 @@
+html {
+    background-color: #76B947;
+}
+
+nav {
+    background-color: #2F5233;
+}
+
+nav img {
+    margin-top: 6px;
+    width: 80px;
+}
+
+.profile-icon {
+    width: 50px;
+}
+
+.dropdown-trigger {
+    height: 64px;
+}
+
+.page-footer {
+    background-color: #2F5233;
+}
+
+.card.small {
+    width: 300px;
+}
+
+.carousel {
+    margin-top: 30px;
+}
