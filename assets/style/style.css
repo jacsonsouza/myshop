@@ -6,6 +6,11 @@ nav {
     background-color: #2F5233;
 }
 
+h2,
+h3 {
+    color: white;
+}
+
 nav img {
     margin-top: 6px;
     width: 80px;
