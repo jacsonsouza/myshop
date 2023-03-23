@@ -1,9 +1,9 @@
 html {
-    background-color: #76B947;
+    background-color: #F37970;
 }
 
 nav {
-    background-color: #2F5233;
+    background-color: #E43D40;
 }
 
 h2,
@@ -25,7 +25,7 @@ nav img {
 }
 
 .page-footer {
-    background-color: #2F5233;
+    background-color: #E43D40;
 }
 
 .card.small {
@@ -34,4 +34,67 @@ nav img {
 
 .carousel {
     margin-top: 30px;
+}
+
+/*
+ *  Estilo tela de login
+*/
+
+.fields {
+    padding: 64px;
+    display: grid;
+}
+
+.fields img {
+    margin: auto;
+    width: 120px;
+}
+
+.input-field label {
+    color: white;
+}
+
+input[type=email]:not(.browser-default) {
+    border-bottom: 1px solid white;
+}
+
+input[type=email]:not(.browser-default):focus:not([readonly]) {
+    border-bottom: 1px solid white;
+    box-shadow: 0 1px 0 0 #F37970;
+}
+
+input[type=email]:not(.browser-default):focus:not([readonly])+label {
+    color: white;
+}
+
+input[type=password]:not(.browser-default) {
+    border-bottom: 1px solid white;
+}
+
+input[type=password]:not(.browser-default):focus:not([readonly]) {
+    border-bottom: 1px solid white;
+    box-shadow: 0 1px 0 0 #F37970;
+}
+
+input[type=password]:not(.browser-default):focus:not([readonly])+label {
+    color: white;
+}
+
+input[type=text]:not(.browser-default) {
+    border-bottom: 1px solid white;
+}
+
+input[type=text]:not(.browser-default):focus:not([readonly]) {
+    border-bottom: 1px solid white;
+    box-shadow: 0 1px 0 0 #F37970;
+}
+
+input[type=text]:not(.browser-default):focus:not([readonly])+label {
+    color: white;
+}
+
+.btn-small {
+    background-color: #E43D40;
+    margin: auto;
+    width: 110px;
 }
