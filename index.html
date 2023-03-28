@@ -5,8 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="./assets/materialize/css/materialize.min.css" rel="stylesheet">
+  <link href="./assets/library/materialize/css/materialize.min.css" rel="stylesheet">
   <link rel="stylesheet" href="./assets/style/style.css">
   <title>MyShop</title>
 </head>
@@ -31,7 +30,8 @@
             <li><a href="./app/pages/offers.html">Ofertas</a></li>
             <!-- Dropdown Trigger -->
             <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">
-                <img class="profile-icon" src="./assets/images/profile.svg" alt="Icone">
+                <!--<img class="profile-icon" src="./assets/images/profile.svg" alt="Icone">-->
+                <span class="material-icons left">account_circle</span>
                 <i class="material-icons right">arrow_drop_down</i></a></li>
           </ul>
         </div>
@@ -156,30 +156,9 @@
     </footer>
   </main>
 
-  <script src="./assets/jquery.min.js"></script>
-  <script src="./assets/materialize/js/materialize.min.js"></script>
-  <script>
-    $(".dropdown-trigger").dropdown(
-      {
-        hover: false,
-        coverTrigger: false
-      }
-    );
-
-    $(document).ready(function () {
-      $('.sidenav').sidenav();
-    });
-
-    $(document).ready(function () {
-      $('.carousel').carousel(
-        {
-          duration: 200,
-          fullWidth: true,
-          indicators: true
-        }
-      );
-    });
-  </script>
+  <script src="./assets/library/jquery/jquery.min.js"></script>
+  <script src="./assets/library/materialize/js/materialize.min.js"></script>
+  <script src="./assets/script/common.js"></script>
 </body>
 
 </html>
