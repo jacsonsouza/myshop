@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../../assets/library/materialize/css/materialize.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../assets/style/style.css">
-    <title>Entrar</title>
+    <title>Cadastro de produtos</title>
 </head>
 
 <body>
@@ -49,29 +49,27 @@
             <img src="../../assets/images/logo.png" alt="">
             <div class="row">
                 <form id="form-data" class="col s12">
-
                     <div class="row">
                         <div class="input-field col s12">
-                            <input id="email" type="email" class="validate">
-                            <label for="email">Email</label>
+                            <input id="input_title" type="text" data-length="10">
+                            <label for="input_title">Título para o produto</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <input id="input_text" type="text" data-length="10">
-                            <label for="input_text">Nome Completo</label>
+                            <input id="input_description" type="text" data-length="10">
+                            <label for="input_description">Descrição do produto</label>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="input-field col s12">
-                            <input id="password" type="password" class="validate">
-                            <label for="password">Senha</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="input-field col s12">
-                            <input id="confirm-password" type="password" class="validate">
-                            <label for="confirm-password">Confirmar Senha</label>
+                        <div class="file-field input-field">
+                            <div class="btn #1b5e20 green darken-4">
+                                <span>Imagem</span>
+                                <input id="input-img" type="file">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text">
+                            </div>
                         </div>
                     </div>
                     <button class="bt" type="submit">Cadastrar</button>
@@ -110,7 +108,7 @@
     <script src="../../assets/library/jquery/jquery.min.js"></script>
     <script src="../../assets/library/materialize/js/materialize.min.js"></script>
     <script src="../../assets/script/common.js"></script>
-    <script src="../../assets/script/register.js"></script>
+    <script src="../../assets/script/register-offers.js"></script>
 </body>
 
 </html>

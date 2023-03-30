@@ -1,24 +1,12 @@
-$(".dropdown-trigger").dropdown(
-    {
-        hover: false,
-        coverTrigger: false
-    }
-);
-
 $(document).ready(function () {
-    $('.sidenav').sidenav();
+  $('select').formSelect();
 });
 
-$(document).ready(function () {
-    $('.carousel').carousel(
-        {
-            duration: 200,
-            fullWidth: true,
-            indicators: true
-        }
-    );
-});
-
-$(document).ready(function () {
-    $('select').formSelect();
-});
+setTimeout(function () {
+  $('.sidenav').sidenav();
+  $('.dropdown-trigger').dropdown({
+    alignment: 'left',
+    hover: false,
+    coverTrigger: false,
+  });
+}, 1000);

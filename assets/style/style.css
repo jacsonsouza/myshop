@@ -1,9 +1,9 @@
 html {
-    background-color: #F37970;
+    background-color: #478C5C;
 }
 
 nav {
-    background-color: #E43D40;
+    background-color: #013A20;
 }
 
 h2,
@@ -14,6 +14,16 @@ h3 {
 nav img {
     margin-top: 6px;
     width: 80px;
+}
+
+.bt {
+    width: 50%;
+    height: 37px;
+    margin: auto;
+    display: block;
+    border: none;
+    color: WHITE;
+    background-color: #1b5e20;
 }
 
 @font-face {
@@ -33,7 +43,7 @@ nav img {
     font-family: 'Material Icons';
     font-weight: normal;
     font-style: normal;
-    font-size: 54px;
+    font-size: 24px;
     display: inline-block;
     line-height: 1;
     text-transform: none;
@@ -57,11 +67,18 @@ nav img {
 }
 
 .page-footer {
-    background-color: #E43D40;
+    background-color: #013A20;
+}
+
+.card-list {
+    overflow: hidden;
+    padding: 0px 28px 0px 28px;
 }
 
 .card.small {
-    width: 300px;
+    width: 240px;
+    margin: 20px;
+    float: left;
 }
 
 .carousel {
