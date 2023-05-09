@@ -32,7 +32,7 @@ class DW3ImagemUpload
 
     public static function salvar($arquivo, $destino)
     {
-        move_uploaded_file($arquivo[self::NOME_TEMPORARIO], $destino);
+        $boll = move_uploaded_file($arquivo[self::NOME_TEMPORARIO], $destino);
     }
 
     /* Verifica se existe a imagem já salva na pasta img */

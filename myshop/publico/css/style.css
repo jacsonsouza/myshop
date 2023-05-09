@@ -1,0 +1,268 @@
+@font-face {
+  font-family: "Material Icons";
+  font-style: normal;
+  font-weight: 400;
+  src: url(../fonts/MaterialIcons-Regular.codepoints);
+  src: local("Material Icons"), local("MaterialIcons-Regular"),
+    url(../fonts/MaterialIconsOutlined-Regular.otf) format("otf"),
+    url(../fonts/MaterialIconsRound-Regular.otf) format("otf"),
+    url(../fonts/MaterialIconsSharp-Regular.otf) format("otf"),
+    url(../fonts/MaterialIcons-Regular.ttf) format("truetype");
+}
+
+.material-icons {
+  font-family: "Material Icons";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smooting: grayscale;
+  font-feature-settings: "liga";
+}
+
+html {
+  background-color: #478c5c;
+  font-family: Merriweather;
+}
+
+nav {
+  background-color: #013a20;
+}
+
+h2,
+h3 {
+  color: white;
+}
+
+.nome-usuario {
+  font-weight: bold;
+  color: blue;
+}
+
+nav img {
+  margin-top: 6px;
+  width: 80px;
+}
+
+hr {
+  margin-bottom: 30px;
+}
+
+.bt {
+  height: 50px;
+  margin: auto;
+  display: block;
+  border: none;
+  color: WHITE;
+  background-color: #1b5e20;
+}
+
+.card.small button {
+  background-color: black;
+  color: white;
+  margin: auto;
+  margin-top: 15px;
+}
+
+#logout {
+  background-color: transparent;
+  border: none;
+  font-size: 16px;
+  color: #26a69a;
+  display: block;
+  line-height: 22px;
+  padding: 14px 16px;
+}
+
+#profile-info {
+  overflow: hidden;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+h4 {
+  float: left;
+  margin-top: 100px;
+  color: white;
+}
+
+.profile-pic img {
+  height: 154px;
+  float: left;
+}
+
+.bt-switch {
+  float: left;
+}
+
+#btons {
+  overflow: hidden;
+}
+
+.profile-icon {
+  width: 50px;
+}
+
+.dropdown-trigger {
+  height: 64px;
+}
+
+.page-footer {
+  background-color: #013a20;
+}
+
+.card-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0px 28px 0px 28px;
+}
+
+.card.small {
+  width: 240px;
+  margin: 10px;
+}
+
+.div-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+}
+
+.sidenav {
+  background-color: #013a20;
+}
+
+.bt-buy {
+  background-color: black;
+  color: white;
+  height: 48px;
+  padding: 0 32px;
+}
+
+/*
+ *  Estilo tela de login
+*/
+
+.fields {
+  display: flex;
+  padding: 64px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.fields img {
+  margin: auto;
+  width: 120px;
+}
+
+.input-field label {
+  color: white;
+}
+
+input[type="email"]:not(.browser-default) {
+  border-bottom: 1px solid white;
+}
+
+input[type="email"]:not(.browser-default):focus:not([readonly]) {
+  border-bottom: 1px solid white;
+  box-shadow: 0 1px 0 0 #f37970;
+}
+
+input[type="email"]:not(.browser-default):focus:not([readonly]) + label {
+  color: white;
+}
+
+input[type="password"]:not(.browser-default) {
+  border-bottom: 1px solid white;
+}
+
+input[type="password"]:not(.browser-default):focus:not([readonly]) {
+  border-bottom: 1px solid white;
+  box-shadow: 0 1px 0 0 #f37970;
+}
+
+input[type="password"]:not(.browser-default):focus:not([readonly]) + label {
+  color: white;
+}
+
+input[type="text"]:not(.browser-default) {
+  border-bottom: 1px solid white;
+}
+
+input[type="text"]:not(.browser-default):focus:not([readonly]) {
+  border-bottom: 1px solid white;
+  box-shadow: 0 1px 0 0 #f37970;
+}
+
+input[type="text"]:not(.browser-default):focus:not([readonly]) + label {
+  color: white;
+}
+
+.btn-small {
+  background-color: #e43d40;
+  margin: auto;
+  width: 110px;
+}
+
+/*
+ * Estilo para os filtros
+*/
+
+.div-filtros {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.div-pesquisa {
+  width: 200px;
+  height: 40px;
+  border: solid;
+  border-width: 1px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 15px;
+}
+
+#input-pesquisa {
+  width: 150px;
+  height: 40px;
+  border: transparent;
+  margin-top: 5px;
+  margin-left: 5px;
+  box-shadow: 0 0 0 0;
+  outline: 0;
+}
+
+#button-pesquisa {
+  width: 40px;
+  height: 40px;
+  color: white;
+  background-color: transparent;
+  border: transparent;
+}
+
+#filtro {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
