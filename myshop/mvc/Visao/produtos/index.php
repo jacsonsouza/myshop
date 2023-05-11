@@ -45,7 +45,19 @@
                         </p>
                     </div>
                 </div>
-                <button type="button" class="bt-buy">Comprar</button>
+                <div class="buttons">
+                    <div class="bt-buy">
+                        <a href="<?= URL_RAIZ . 'produtos/' . $produto->getId()?>">Comprar</a>
+                    </div>
+                    <?php if ($userLogged === $produto->getUsuario()->getId()) : ?>
+                        <form action="<?=URL_RAIZ . 'produtos/' . $produto->getId() ?>" method="post">
+                        <input type="hidden" name="_metodo" value="DELETE">
+                        <button type="submit" class="button-delete">
+                            <span class="material-icons">delete</span>
+                        </button>
+                        </form>
+                    <?php endif ?>
+                </div>
             </div>
             <?php endforeach ?>
 	</div>

@@ -54,28 +54,38 @@ class ProdutoControlador extends Controlador
             $this->redirecionar(URL_RAIZ . 'produtos');
 
         } else {
-            // $paginacao = $this->calcularPaginacao();
-            // $this->setErros($mensagem->getValidacaoErros());
-            // $this->visao('mensagens/index.php', [
-            //     'mensagens' => $paginacao['mensagens'],
-            //     'pagina' => $paginacao['pagina'],
-            //     'ultimaPagina' => $paginacao['ultimaPagina'],
-            //     'mensagemFlash' => DW3Sessao::getFlash('mensagemFlash')
-            // ]);
-            $this->visao('produtos/cadastrar.php');
+            $paginacao = $this->calcularPaginacao();
+            $this->setErros($mensagem->getValidacaoErros());
+            $this->visao('produtos/index.php', [
+                'produtos' => $paginacao['produtos'],
+                'pagina' => $paginacao['pagina'],
+                'ultimaPagina' => $paginacao['ultimaPagina'],
+                'mensagemFlash' => DW3Sessao::getFlash('mensagemFlash')
+            ]);
+            // $this->visao('produtos/cadastrar.php');
         }
+    }
+
+    public function vender($id)
+    {
+        $this->verificarLogado();
+        $produto = Produto::buscarId($id);
+        $idUsuario = $this->getUsuario();
+        Produto::modificar($id);
+        Produto::inserirCompra($idUsuario, $id);
+        $this->redirecionar(URL_RAIZ . 'produtos');
     }
 
     public function destruir($id)
     {
         $this->verificarLogado();
-        $mensagem = Mensagem::buscarId($id);
-        if ($mensagem->getUsuarioId() == $this->getUsuario()) {
-            Mensagem::destruir($id);
+        $produto = Produto::buscarId($id);
+        if ($produto->getUsuarioId() == $this->getUsuario()) {
+            Produto::destruir($id);
             DW3Sessao::setFlash('mensagemFlash', 'Mensagem destruida.');
         } else {
             DW3Sessao::setFlash('mensagemFlash', 'Você não pode deletar as mensagens dos outros.');
         }
-        $this->redirecionar(URL_RAIZ . 'mensagens');
+        $this->redirecionar(URL_RAIZ . 'produtos');
     }
 }

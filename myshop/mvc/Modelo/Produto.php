@@ -7,11 +7,14 @@ use \Framework\DW3ImagemUpload;
 
 class Produto extends Modelo
 {
-    const BUSCAR_TODOS = 'SELECT p.id p_id, nome_produto, descricao, preco, vendedor_id, u.nome u_nome FROM produtos p JOIN usuarios u ON (vendedor_id = u.id) ORDER BY p.id LIMIT ? OFFSET ?;';
+    const BUSCAR_TODOS = 'SELECT p.id p_id, nome_produto, descricao, preco, vendedor_id, u.nome u_nome FROM produtos p JOIN usuarios u ON (vendedor_id = u.id) WHERE vendido=0 ORDER BY p.id LIMIT ? OFFSET ?';
     const BUSCAR_ID = 'SELECT * FROM produtos WHERE id = ? LIMIT 1';
-    const INSERIR = 'INSERT INTO produtos(vendedor_id, nome_produto, descricao, preco) VALUES (?, ?, ?, ?)';
+    const INSERIR = 'INSERT INTO produtos(vendedor_id, nome_produto, descricao, preco, vendido) VALUES (?, ?, ?, ?, ?)';
+    const MODIFICAR = 'UPDATE produtos SET vendido = 1 WHERE id = ?';
+    const INSERIR_COMPRA = 'INSERT INTO produtos_usuario(id_usuario, id_produto) VALUES (?, ?)';
     const DELETAR = 'DELETE FROM produtos WHERE id = ?';
     const CONTAR_TODOS = 'SELECT count(id) FROM produtos';
+
     private $id;
     private $usuarioId;
     private $nomeProduto;
@@ -93,6 +96,7 @@ class Produto extends Modelo
         $comando->bindValue(2, $this->nomeProduto, PDO::PARAM_STR);
         $comando->bindValue(3, $this->descricao, PDO::PARAM_STR);
         $comando->bindValue(4, $this->preco, PDO::PARAM_STR);
+        $comando->bindValue(5, 0, PDO::PARAM_INT);
         $comando->execute();
         $this->id = DW3BancoDeDados::getPdo()->lastInsertId();
         DW3BancoDeDados::getPdo()->commit();
@@ -116,8 +120,11 @@ class Produto extends Modelo
         $registro = $comando->fetch();
         if ($registro) {
             $objeto = new Produto(
-                $registro['usuario_id'],
-                $registro['texto'],
+                $registro['vendedor_id'],
+                $registro['nome_produto'],
+                $registro['descricao'],
+                $registro['preco'],
+                null,
                 null,
                 $registro['id']
             );
@@ -183,5 +190,20 @@ class Produto extends Modelo
                 && !DW3ImagemUpload::isValida($this->imagem)) {
                     $this->setErroMensagem('imagem', 'Deve ser de no máximo 500 kb');
         } 
+    }
+
+    public static function modificar($id)
+    {
+        $comando = DW3BancoDeDados::prepare(self::MODIFICAR);
+        $comando->bindValue(1, $id, PDO::PARAM_INT);
+        $comando->execute();
+    }
+
+    public static function inserirCompra($idUsuario, $idProduto)
+    {
+        $comando = DW3BancoDeDados::prepare(self::INSERIR_COMPRA);
+        $comando->bindValue(1, $idUsuario, PDO::PARAM_INT);
+        $comando->bindValue(2, $idProduto, PDO::PARAM_INT);
+        $comando->execute();
     }
 }

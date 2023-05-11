@@ -32,6 +32,7 @@ $rotas = [
         'POST' => '\Controlador\ProdutoControlador#armazenar',
     ],
     '/produtos/?' => [
+        'GET' => '\Controlador\ProdutoControlador#vender',
         'DELETE' => '\Controlador\ProdutoControlador#destruir',
     ],
 ];

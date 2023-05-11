@@ -15,6 +15,7 @@ CREATE TABLE produtos (
     nome_produto VARCHAR(60) NOT NULL ,
     descricao VARCHAR(255) NOT NULL ,
     preco VARCHAR(24) NOT NULL,
+    vendido BIT NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (vendedor_id) REFERENCES usuarios (id)
 )
