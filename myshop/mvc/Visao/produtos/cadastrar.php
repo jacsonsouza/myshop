@@ -1,27 +1,27 @@
 <main>    
     <div class="fields">
         <img src="<?= URL_IMG . 'logo.png'?>" alt="">
-        <div class="row">
+        <div class="container">
             <form id="form-data" enctype="multipart/form-data" action="<?= URL_RAIZ . 'produtos/cadastrar'?>" method="post" class="col s12">
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input id="nome" name="nome" type="text" data-length="10">
+                <div class="container">
+                    <div class="input-field">
+                        <input id="nome" name="nome" type="text" data-length="10" autofocus>
                         <label for="nome">Nome do produto</label>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="input-field col s12">
+                <div class="container">
+                    <div class="input-field">
                         <input id="descricao" name="descricao" type="text" data-length="10">
                         <label for="descricao">Descrição do produto</label>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="input-field col s12">
-                        <input id="preco" name="preco" type="text" data-length="10">
+                <div class="container">
+                    <div class="input-field">
+                        <input id="preco" name="preco" type="text" data-prefix="R$ " data-thousands="." data-decimal="," data-length="10">
                         <label for="preco">Preço</label>
                     </div>
                 </div>
-                <div class="row">
+                <div class="container">
                     <div class="file-field input-field" <?= $this->getErroCss('imagem') ?>>
                         <div class="btn #1b5e20 green darken-4">
                             <span>Imagem</span>
@@ -33,7 +33,7 @@
                         <?= $this->incluirVisao('util/formErro.php', ['campo' => 'imagem'])?>
                     </div>
                 </div>
-                <button class="bt" type="submit">Cadastrar</button>
+                <button class="button-submit" type="submit">Cadastrar</button>
             </form>
         </div>
     </div>

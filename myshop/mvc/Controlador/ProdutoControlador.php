@@ -19,13 +19,13 @@ class ProdutoControlador extends Controlador
     public function index()
     {
         $paginacao = $this->calcularPaginacao();
-        $userLogged = $this->getUsuario();
+        $usuarioLogado = $this->verificarLogado();
         $this->visao('produtos/index.php', [
             'produtos' => $paginacao['produtos'],
             'pagina' => $paginacao['pagina'],
             'ultimaPagina' => $paginacao['ultimaPagina'],
             'mensagemFlash' => DW3Sessao::getFlash('mensagemFlash'),
-            'userLogged' => $userLogged
+            'usuarioLogado' => $usuarioLogado
         ]);
     }
 

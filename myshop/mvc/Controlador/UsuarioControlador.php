@@ -1,21 +1,23 @@
 <?php
 namespace Controlador;
 
+use \Framework\DW3Sessao;
 use \Modelo\Usuario;
 
 class UsuarioControlador extends Controlador
 {
     public function criar()
     {
-        $this->visao('usuarios/criar.php');
+        $usuarioLogado = $this->verificarLogado();
+        $this->visao('usuarios/criar.php', ['usuarioLogado' => $usuarioLogado]);
     }
 
     public function armazenar()
     {
-        //$foto = array_key_exists('foto', $_FILES) ? $_FILES['foto'] : null;
         $usuario = new Usuario($_POST['email'],$_POST['full-name'], $_POST['password'], $_POST['confirm-password']);
         if ($usuario->isValido()) {
             $usuario->salvar();
+            DW3Sessao::set('usuario', $usuario->getId());
             $this->redirecionar(URL_RAIZ . 'usuarios/sucesso');
             
         } else {

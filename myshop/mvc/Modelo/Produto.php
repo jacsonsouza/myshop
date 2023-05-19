@@ -7,13 +7,13 @@ use \Framework\DW3ImagemUpload;
 
 class Produto extends Modelo
 {
-    const BUSCAR_TODOS = 'SELECT p.id p_id, nome_produto, descricao, preco, vendedor_id, u.nome u_nome FROM produtos p JOIN usuarios u ON (vendedor_id = u.id) WHERE vendido=0 ORDER BY p.id LIMIT ? OFFSET ?';
-    const BUSCAR_ID = 'SELECT * FROM produtos WHERE id = ? LIMIT 1';
+    const BUSCAR_TODOS = 'SELECT p.id_produto p_id_produto, nome_produto, descricao, preco, vendedor_id, u.nome u_nome FROM produtos p JOIN usuarios u ON (vendedor_id = u.id_usuario) WHERE vendido=0 ORDER BY p.id_produto LIMIT ? OFFSET ?';
+    const BUSCAR_ID = 'SELECT * FROM produtos WHERE id_produto = ? LIMIT 1';
     const INSERIR = 'INSERT INTO produtos(vendedor_id, nome_produto, descricao, preco, vendido) VALUES (?, ?, ?, ?, ?)';
-    const MODIFICAR = 'UPDATE produtos SET vendido = 1 WHERE id = ?';
-    const INSERIR_COMPRA = 'INSERT INTO produtos_usuario(id_usuario, id_produto) VALUES (?, ?)';
-    const DELETAR = 'DELETE FROM produtos WHERE id = ?';
-    const CONTAR_TODOS = 'SELECT count(id) FROM produtos';
+    const MODIFICAR = 'UPDATE produtos SET vendido = 1 WHERE id_produto = ?';
+    const INSERIR_COMPRA = 'INSERT INTO produtos_usuario(id_usuario, id_produto, date) VALUES (?, ?,CURDATE())';
+    const DELETAR = 'DELETE FROM produtos WHERE id_produto = ?';
+    const CONTAR_TODOS = 'SELECT count(id_produto) FROM produtos';
 
     private $id;
     private $usuarioId;
@@ -126,7 +126,7 @@ class Produto extends Modelo
                 $registro['preco'],
                 null,
                 null,
-                $registro['id']
+                $registro['id_produto']
             );
         }
         return $objeto;
@@ -160,7 +160,7 @@ class Produto extends Modelo
                 $registro['preco'],
                 null,
                 $usuario,
-                $registro['p_id']
+                $registro['p_id_produto']
             );
         }
         return $objetos;

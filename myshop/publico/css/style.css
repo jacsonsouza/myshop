@@ -29,6 +29,11 @@
   font-feature-settings: "liga";
 }
 
+.material-icons.md-36 {
+  font-size: 36px;
+  margin-right: 0px;
+}
+
 html {
   background-color: #478c5c;
   font-family: Merriweather;
@@ -67,8 +72,13 @@ hr {
   margin-bottom: 30px;
 }
 
-.bt {
+button {
+  cursor: pointer;
+}
+
+.button-submit {
   height: 50px;
+  width: 100px;
   margin: auto;
   display: block;
   border: none;
@@ -159,6 +169,31 @@ h4 {
 /*
  *  Estilo tela de login
 */
+
+.div-direction {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.div-direction a {
+  color: white;
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+.div-direction p {
+  color: #013a20;
+  font-weight: bold;
+}
+
+.input-field {
+  width: 80%;
+  margin: auto;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
 
 .fields {
   display: flex;
@@ -284,4 +319,24 @@ input[type="text"]:not(.browser-default):focus:not([readonly]) + label {
   background-color: black;
   border: transparent;
   margin: 10px;
+}
+
+/* Estilo dos relatórios */
+
+.card-panel {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #013a20;
+  color: white;
+}
+
+.img-relatorio {
+  height: 150px;
+}
+
+.img-relatorio img {
+  height: 100%;
 }

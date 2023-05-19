@@ -9,13 +9,13 @@ class Usuario extends Modelo
 {
     const BUSCAR_POR_EMAIL = 'SELECT * FROM usuarios WHERE email = ? LIMIT 1';
     const INSERIR = 'INSERT INTO usuarios(email, nome, senha) VALUES (?, ?, ?)';
+    const BUSCAR_COMPRAS = 'SELECT id_produtos_usuario, nome_produto, descricao, preco, DATE_FORMAT(date, "%d/%m/%Y") AS "data" FROM usuarios JOIN produtos_usuario USING (id_usuario) JOIN produtos USING (id_produto) WHERE id_usuario = ?';
     private $id;
     private $email;
     private $nome;
     private $senha;
     private $senhaPlana;
     private $confirmaSenha;
-    //private $foto;
 
     public function __construct(
         $email,
@@ -49,17 +49,6 @@ class Usuario extends Modelo
         return $this->nome;
     }
 
-    /*
-    public function getImagem()
-    {
-        $imagemNome = "{$this->id}.png";
-        if (!DW3ImagemUpload::existe($imagemNome)) {
-            $imagemNome = 'padrao.png';
-        }
-        return $imagemNome;
-    }
-    */
-
     public function verificarSenha($senhaPlana)
     {
         return password_verify($senhaPlana, $this->senha);
@@ -76,16 +65,11 @@ class Usuario extends Modelo
         if ($this->senhaPlana !== $this->confirmaSenha) {
             $this->setErroMensagem('confirm-password', 'Senhas não correspondem.');
         }
-        // if (DW3ImagemUpload::existeUpload($this->foto)
-        //     && !DW3ImagemUpload::isValida($this->foto)) {
-        //     $this->setErroMensagem('foto', 'Deve ser de no máximo 500 KB.');
-        // }
     }
 
     public function salvar()
     {
         $this->inserir();
-        //$this->salvarImagem();
     }
 
     private function inserir()
@@ -99,14 +83,6 @@ class Usuario extends Modelo
         $this->id = DW3BancoDeDados::getPdo()->lastInsertId();
         DW3BancoDeDados::getPdo()->commit();
     }
-
-    // private function salvarImagem()
-    // {
-    //     if (DW3ImagemUpload::isValida($this->foto)) {
-    //         $nomeCompleto = PASTA_PUBLICO . "img/{$this->id}.png";
-    //         DW3ImagemUpload::salvar($this->foto, $nomeCompleto);
-    //     }
-    // }
 
     public static function buscarEmail($email)
     {
@@ -122,10 +98,31 @@ class Usuario extends Modelo
                 '',
                 '',
                 
-                $registro['id']
+                $registro['id_usuario']
             );
             $objeto->senha = $registro['senha'];
         }
         return $objeto;
+    }
+
+    public static function buscarCompras($idUsuario)
+    {
+        $comando = DW3BancoDeDados::prepare(self::BUSCAR_COMPRAS);
+        $comando->bindValue(1, $idUsuario, PDO::PARAM_INT);
+        $comando->execute();
+        $registros = $comando->fetchAll();
+        $objetos = [];
+        foreach($registros as $registro) {
+            $produtoComprado = ['nome' => $registro['nome_produto'],
+                     'descricao' => $registro['descricao'],
+                     'preco' => $registro['preco'],
+                     'data' => $registro['data'],
+                     'id' => $registro['id_produtos_usuario'],
+                    ];
+
+            $objetos[] = $produtoComprado;
+        }
+
+        return $objetos;
     }
 }

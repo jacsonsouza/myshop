@@ -10,13 +10,14 @@
     <link rel="icon" type="image/x-icon" href="<?= URL_IMG . 'logo.png' ?>">
     <script src="<?= URL_JS . 'jquery-3.1.1.min.js' ?>"></script>
     <script src="<?= URL_JS . 'materialize.min.js' ?>"></script>
+    <script src="<?= URL_JS . 'jquery.maskMoney.min.js' ?>"></script>    
     <script src="<?= URL_JS . 'comum.js' ?>"></script>
 </head>
 <body>
 
 <ul id="dropdown1" class="dropdown-content">
-    <?php if ($userLogged !== null) : ?>
-      <li><a href="<?= URL_RAIZ . 'login' ?>">Perfil</a></li>
+    <?php if ($usuarioLogado) : ?>
+      <li><a href="<?= URL_RAIZ . 'relatorios' ?>">Relatórios</a></li>
       <li><a href="<?= URL_RAIZ . 'logout' ?>">Sair</a></li>
     <?php else : ?>
       <li><a href="<?= URL_RAIZ . 'login' ?>">Entrar</a></li>
@@ -32,7 +33,7 @@
           </a>
           <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
           <ul class="right hide-on-med-and-down">
-          <?php if ($userLogged !== null) : ?>
+          <?php if ($usuarioLogado) : ?>
             <li><a href="<?= URL_RAIZ . "produtos/cadastrar"?>">Cadastrar produtos</a></li>
           <?php endif ?>
             <li><a href="<?= URL_RAIZ . "produtos"?>">Produtos</a></li>
@@ -40,7 +41,7 @@
             <li>
               <a class="dropdown-trigger" href="#!" data-target="dropdown1">
                 <!-- <img class="profile-icon" src="./assets/images/profile.svg" alt="Icone"> -->
-                <i class="material-icons left">account_circle</i>
+                <i class="material-icons left md-36">account_circle</i>
                 <i class="material-icons right">arrow_drop_down</i>
               </a>
             </li>

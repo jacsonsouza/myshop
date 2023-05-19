@@ -35,4 +35,7 @@ $rotas = [
         'GET' => '\Controlador\ProdutoControlador#vender',
         'DELETE' => '\Controlador\ProdutoControlador#destruir',
     ],
+    '/relatorios' => [
+        'GET' => '\Controlador\RelatorioControlador#index'
+    ],
 ];

@@ -8,7 +8,8 @@ class LoginControlador extends Controlador
 {
     public function criar()
     {
-        $this->visao('login/criar.php');
+        $usuarioLogado = $this->verificarLogado();
+        $this->visao('login/criar.php', ['usuarioLogado' => $usuarioLogado]);
     }
 
     public function armazenar()

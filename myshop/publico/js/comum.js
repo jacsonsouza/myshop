@@ -22,3 +22,7 @@ for (let bt of buttons) {
     }
   };
 }
+
+$(function () {
+  $("#preco").maskMoney();
+});
