@@ -9,9 +9,15 @@ class RelatorioControlador extends Controlador
     public function index()
     {
         $usuarioLogado = $this->verificarLogado();
+
+        if (!$usuarioLogado)
+            $this->redirecionar(URL_RAIZ . 'login');
+
         $idUsuario = $this->getUsuario();
         $produtos = Usuario::buscarCompras($idUsuario);
-        $this->visao('relatorios/index.php',
-                    ['produtoscomprados' => $produtos, 'usuarioLogado' => $usuarioLogado]);
+        $this->visao('relatorios/index.php', [
+            'produtoscomprados' => $produtos,
+            'usuarioLogado' => $usuarioLogado,
+        ]);
     }
 }

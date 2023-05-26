@@ -20,20 +20,22 @@ class ProdutoControlador extends Controlador
     {
         $paginacao = $this->calcularPaginacao();
         $usuarioLogado = $this->verificarLogado();
+        $idUsuario = $this->getUsuario();
         $this->visao('produtos/index.php', [
             'produtos' => $paginacao['produtos'],
             'pagina' => $paginacao['pagina'],
             'ultimaPagina' => $paginacao['ultimaPagina'],
             'mensagemFlash' => DW3Sessao::getFlash('mensagemFlash'),
-            'usuarioLogado' => $usuarioLogado
+            'usuarioLogado' => $usuarioLogado,
+            'idUsuario' => $idUsuario,
         ]);
     }
 
     public function cadastro()
     {
-        $userLogged = $this->getUsuario();
+        $usuarioLogado = $this->verificarLogado();
         $this->visao('produtos/cadastrar.php', [
-            'userLogged' => $userLogged
+            'usuarioLogado' => $usuarioLogado
         ]);
     }
 
@@ -62,13 +64,16 @@ class ProdutoControlador extends Controlador
                 'ultimaPagina' => $paginacao['ultimaPagina'],
                 'mensagemFlash' => DW3Sessao::getFlash('mensagemFlash')
             ]);
-            // $this->visao('produtos/cadastrar.php');
         }
     }
 
     public function vender($id)
     {
-        $this->verificarLogado();
+        $usuarioLogado = $this->verificarLogado();
+
+        if (!$usuarioLogado)
+
+
         $produto = Produto::buscarId($id);
         $idUsuario = $this->getUsuario();
         Produto::modificar($id);

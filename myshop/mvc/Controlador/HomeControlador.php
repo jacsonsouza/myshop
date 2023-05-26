@@ -9,7 +9,11 @@ class HomeControlador extends Controlador
     {
         $usuarioLogado = $this->verificarLogado();
         $idUsuario = $this->getUsuario();
-        $produtos = Produto::buscarTodos();
-        $this->visao('home/home.php', ['usuarioLogado' => $usuarioLogado, 'produtos' => $produtos, 'idUsuario' => $idUsuario]);
+        $produtos = Produto::buscarTodos(3);
+        $this->visao('home/home.php', [
+            'usuarioLogado' => $usuarioLogado, 
+            'produtos' => $produtos, 
+            'idUsuario' => $idUsuario,
+        ]);
     }
 }

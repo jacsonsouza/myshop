@@ -31,3 +31,6 @@ CREATE TABLE produtos_usuario (
     FOREIGN KEY (id_produto) REFERENCES produtos (id_produto)
 )
 ENGINE = InnoDB;
+
+INSERT INTO usuarios (email, nome, senha) VALUES 
+('teste@teste.com', 'Fulano', '');

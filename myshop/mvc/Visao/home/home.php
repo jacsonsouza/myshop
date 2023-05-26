@@ -29,10 +29,11 @@
                 </div>
             </div>
             <div class="buttons">
-                <div class="bt-buy">
-                    <a href="<?= URL_RAIZ . 'produtos/' . $produto->getId()?>">Comprar</a>
-                </div>
-                <?php if ($idUsuario === $produto->getUsuario()->getId()) : ?>
+                <?php if ($idUsuario != $produto->getUsuario()->getId()) : ?>
+                    <div class="bt-buy">
+                        <a href="<?= URL_RAIZ . 'produtos/' . $produto->getId()?>">Comprar</a>
+                    </div>
+                <?php else : ?>
                     <form action="<?=URL_RAIZ . 'produtos/' . $produto->getId() ?>" method="post">
                     <input type="hidden" name="_metodo" value="DELETE">
                     <button type="submit" class="button-delete">
@@ -74,15 +75,16 @@
                 </div>
             </div>
             <div class="buttons">
-                <div class="bt-buy">
-                    <a href="<?= URL_RAIZ . 'produtos/' . $produto->getId()?>">Comprar</a>
-                </div>
-                <?php if ($idUsuario === $produto->getUsuario()->getId()) : ?>
+                <?php if ($idUsuario != $produto->getUsuario()->getId()) : ?>
+                    <div class="bt-buy">
+                        <a href="<?= URL_RAIZ . 'produtos/' . $produto->getId()?>">Comprar</a>
+                    </div>
+                <?php else : ?>
                     <form action="<?=URL_RAIZ . 'produtos/' . $produto->getId() ?>" method="post">
-                    <input type="hidden" name="_metodo" value="DELETE">
-                    <button type="submit" class="button-delete">
-                        <span class="material-icons">delete</span>
-                    </button>
+                        <input type="hidden" name="_metodo" value="DELETE">
+                        <button type="submit" class="button-delete">
+                            <span class="material-icons">delete</span>
+                        </button>
                     </form>
                 <?php endif ?>
             </div>
