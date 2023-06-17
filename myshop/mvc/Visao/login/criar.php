@@ -3,16 +3,16 @@
         <img src="<?= URL_IMG . 'logo.png' ?>" alt="">
         <div class="container">
             <div class="container">
-                <form id="form-login" action="<?= URL_RAIZ . 'login' ?> "method="post" class="col s12">
+                <form id="form-login" action="<?= URL_RAIZ . 'login' ?>" method="post" class="col s12">
                     <div class="container">
                         <div class="input-field" <?= $this->getErroCss('login') ?>>
-                            <input id="email" name="email" type="email" class="validate" autofocus>
+                            <input id="email" name="email" type="email" class="validate" value="<?= $this->getPost('email') ?>" autofocus>
                             <label for="email">Email</label>
                         </div>
                     </div>
                     <div class="container">
                         <div class="input-field" <?= $this->getErroCss('login') ?>>
-                            <input id="password" name="password" type="password" class="validate">
+                            <input id="password" name="password" type="password" class="validate" value="<?= $this->getPost('password') ?>">
                             <label for="password">Password</label>
                         </div>
                     </div>

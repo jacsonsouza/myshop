@@ -20,8 +20,7 @@ abstract class DW3Modelo
     {
     	$this->__erros = [];
     	$this->verificarErros();
-        //return empty($this->__erros);
-        return true;
+        return empty($this->__erros);
     }
 
     /* Chamado pelo controlador */

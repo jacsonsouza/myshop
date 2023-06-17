@@ -32,6 +32,13 @@
 .material-icons.md-36 {
   font-size: 36px;
   margin-right: 0px;
+  color: white;
+}
+
+.material-icons.md-25 {
+  font-size: 25px;
+  margin-right: 0px;
+  margin-top: 20px;
 }
 
 html {
@@ -66,6 +73,11 @@ h3 {
 nav img {
   margin-top: 6px;
   width: 80px;
+}
+
+.sidenav li > a {
+  color: white;
+  font-weight: bold;
 }
 
 hr {
@@ -143,6 +155,12 @@ h4 {
   margin: 10px;
 }
 
+.card .card-content .card-title {
+  display: block;
+  line-height: 25px;
+  margin-bottom: 8px;
+}
+
 .div-card {
   display: flex;
   flex-direction: column;
@@ -208,6 +226,10 @@ h4 {
   width: 120px;
 }
 
+.input-field.col label {
+  left: 0rem;
+}
+
 .input-field label {
   color: white;
 }
@@ -218,7 +240,7 @@ input[type="email"]:not(.browser-default) {
 
 input[type="email"]:not(.browser-default):focus:not([readonly]) {
   border-bottom: 1px solid white;
-  box-shadow: 0 1px 0 0 #f37970;
+  box-shadow: 0 1px 0 0 #013a20;
 }
 
 input[type="email"]:not(.browser-default):focus:not([readonly]) + label {
@@ -231,7 +253,7 @@ input[type="password"]:not(.browser-default) {
 
 input[type="password"]:not(.browser-default):focus:not([readonly]) {
   border-bottom: 1px solid white;
-  box-shadow: 0 1px 0 0 #f37970;
+  box-shadow: 0 1px 0 0 #013a20;
 }
 
 input[type="password"]:not(.browser-default):focus:not([readonly]) + label {
@@ -244,7 +266,7 @@ input[type="text"]:not(.browser-default) {
 
 input[type="text"]:not(.browser-default):focus:not([readonly]) {
   border-bottom: 1px solid white;
-  box-shadow: 0 1px 0 0 #f37970;
+  box-shadow: 0 1px 0 0 #013a20;
 }
 
 input[type="text"]:not(.browser-default):focus:not([readonly]) + label {
@@ -327,7 +349,7 @@ input[type="text"]:not(.browser-default):focus:not([readonly]) + label {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: flex-start;
   align-items: center;
   background-color: #013a20;
   color: white;
@@ -339,4 +361,62 @@ input[type="text"]:not(.browser-default):focus:not([readonly]) + label {
 
 .img-relatorio img {
   height: 100%;
+}
+
+.div-pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.pagination li.active {
+  background-color: #013a20;
+}
+
+.busca {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/*
+** Estilo para mensagens flash
+*/
+
+.alert {
+  .card-content {
+    span {
+      font-weight: bold;
+      font-size: 10em;
+      margin-right: 4px;
+    }
+    .material-icons {
+      font-size: 1.5em;
+      position: relative;
+      top: 5px;
+      margin-right: 0.5em;
+    }
+  }
+}
+
+.card-content span {
+  font-weight: bold;
+  font-size: 1.1em;
+  margin-right: 4px;
+}
+
+/*
+** Estilos para relatórios
+*/
+
+.div-buttons {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+.highlight {
+  margin-bottom: 50px;
 }

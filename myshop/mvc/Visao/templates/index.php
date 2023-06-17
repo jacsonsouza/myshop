@@ -17,13 +17,18 @@
 
 <ul id="dropdown1" class="dropdown-content">
     <?php if ($usuarioLogado) : ?>
-      <li><a href="<?= URL_RAIZ . 'relatorios' ?>">Relatórios</a></li>
       <li><a href="<?= URL_RAIZ . 'logout' ?>">Sair</a></li>
     <?php else : ?>
       <li><a href="<?= URL_RAIZ . 'login' ?>">Entrar</a></li>
       <li><a href="<?= URL_RAIZ . 'usuarios/criar' ?>">Cadastrar</a></li>
     <?php endif ?>
   </ul>
+
+  <ul id="dropdown2" class="dropdown-content">    
+    <li><a href="<?= URL_RAIZ . 'vendas' ?>">Vendas</a></li>
+    <li><a href="<?= URL_RAIZ . 'compras' ?>">Compras</a></li>
+  </ul>
+
   <div class="navbar-fixed">
     <nav>
       <div class="container">
@@ -34,13 +39,22 @@
           <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
           <ul class="right hide-on-med-and-down">
           <?php if ($usuarioLogado) : ?>
-            <li><a href="<?= URL_RAIZ . "produtos/cadastrar"?>">Cadastrar produtos</a></li>
+            <li>
+              <a class="dropdown-trigger" href="#!" data-target="dropdown2">
+                <Span>Relatórios</Span>
+                <i class="material-icons right">arrow_drop_down</i>
+              </a>
+            </li>
+            <li><a href="<?= URL_RAIZ . "produtos/criar"?>">Cadastrar produtos</a></li>
           <?php endif ?>
-            <li><a href="<?= URL_RAIZ . "produtos"?>">Produtos</a></li>
-            <!-- Dropdown Trigger -->
+          <li><a href="<?= URL_RAIZ . "produtos"?>">Produtos</a></li>
+          <li>
+            <a href="<?= URL_RAIZ . "busca"?>">
+              <span class="material-icons center md-25">search</span>
+            </a>
+          </li>
             <li>
               <a class="dropdown-trigger" href="#!" data-target="dropdown1">
-                <!-- <img class="profile-icon" src="./assets/images/profile.svg" alt="Icone"> -->
                 <i class="material-icons left md-36">account_circle</i>
                 <i class="material-icons right">arrow_drop_down</i>
               </a>
@@ -51,9 +65,17 @@
     </nav>
   </div>
   <ul class="sidenav" id="mobile-demo">
-    <li><a href="<?= URL_RAIZ . 'login'?>">Entrar</a></li>
-    <li><a href="<?= URL_RAIZ . 'usuarios/criar'?>">Cadastra</a></li>
-    <li><a href="<?=URL_RAIZ . 'produtos'?>">Ofertas</a></li>
+    <?php if ($usuarioLogado) : ?>
+      <li><a href="<?= URL_RAIZ . "produtos"?>">Produtos</a></li>
+      <li><a href="<?= URL_RAIZ . "produtos/criar"?>">Cadastrar produtos</a></li>
+      <li><a href="<?= URL_RAIZ . 'vendas' ?>">Vendas</a></li>
+      <li><a href="<?= URL_RAIZ . 'compras' ?>">Compras</a></li>
+      <li><a href="<?= URL_RAIZ . 'logout' ?>">Sair</a></li>
+    <?php else : ?>
+      <li><a href="<?= URL_RAIZ . 'login'?>">Entrar</a></li>
+      <li><a href="<?= URL_RAIZ . 'usuarios/criar'?>">Cadastra</a></li>
+      <li><a href="<?=URL_RAIZ . 'produtos'?>">Produtos</a></li>
+      <?php endif ?>
   </ul>
   </div>
 

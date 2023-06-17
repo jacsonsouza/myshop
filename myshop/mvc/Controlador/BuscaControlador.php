@@ -3,17 +3,17 @@ namespace Controlador;
 
 use \Modelo\Produto;
 
-class HomeControlador extends Controlador
+class BuscaControlador extends Controlador
 {
     public function index()
     {
         $usuarioLogado = $this->verificarLogado();
         $idUsuario = $this->getUsuario();
-        $produtos = Produto::buscarRandom(3);
-        $this->visao('home/home.php', [
+        $this->visao('busca/index.php', [
             'usuarioLogado' => $usuarioLogado, 
-            'produtos' => $produtos, 
+            'registrosBuscados' => Produto::pesquisar($_GET),
             'idUsuario' => $idUsuario,
         ]);
     }
 }
+?>

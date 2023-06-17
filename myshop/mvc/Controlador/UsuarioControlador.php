@@ -14,20 +14,15 @@ class UsuarioControlador extends Controlador
 
     public function armazenar()
     {
+        $usuarioLogado = $this->verificarLogado();
         $usuario = new Usuario($_POST['email'],$_POST['full-name'], $_POST['password'], $_POST['confirm-password']);
         if ($usuario->isValido()) {
             $usuario->salvar();
             DW3Sessao::set('usuario', $usuario->getId());
-            $this->redirecionar(URL_RAIZ . 'usuarios/sucesso');
-            
+            $this->redirecionar(URL_RAIZ . 'home');  
         } else {
             $this->setErros($usuario->getValidacaoErros());
-            $this->visao('usuarios/criar.php');
+            $this->visao('usuarios/criar.php', ['usuarioLogado' => $usuarioLogado]);
         }
-    }
-
-    public function sucesso()
-    {
-        $this->visao('usuarios/sucesso.php');
     }
 }

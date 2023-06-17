@@ -3,13 +3,12 @@ namespace Modelo;
 
 use \PDO;
 use \Framework\DW3BancoDeDados;
-//use \Framework\DW3ImagemUpload;
 
 class Usuario extends Modelo
 {
     const BUSCAR_POR_EMAIL = 'SELECT * FROM usuarios WHERE email = ? LIMIT 1';
     const INSERIR = 'INSERT INTO usuarios(email, nome, senha) VALUES (?, ?, ?)';
-    const BUSCAR_COMPRAS = 'SELECT id_produtos_usuario, nome_produto, descricao, preco, DATE_FORMAT(date, "%d/%m/%Y") AS "data" FROM usuarios JOIN produtos_usuario USING (id_usuario) JOIN produtos USING (id_produto) WHERE id_usuario = ?';
+
     private $id;
     private $email;
     private $nome;
@@ -56,12 +55,23 @@ class Usuario extends Modelo
 
     protected function verificarErros()
     {
+        $emailExistente = $this::buscarEmail($this->email);
+
+        if($emailExistente) 
+            $this->setErroMensagem('email', 'E-mail informado já existe!');
+
         if (strlen($this->email) < 3) {
-            $this->setErroMensagem('email', 'Deve ter no mínimo 3 caracteres.');
+            $this->setErroMensagem('email', 'Precisa ser um e-mail válido!');
         }
-        if (strlen($this->senhaPlana) < 3) {
-            $this->setErroMensagem('senha', 'Deve ter no mínimo 3 caracteres.');
+
+        if (strlen($this->nome) < 3) {
+            $this->setErroMensagem('full-name', 'Mínimo 3 caracteres!');
         }
+        
+        if (strlen($this->senhaPlana) < 10) {
+            $this->setErroMensagem('senha', 'Mínimo 10 caracteres.');
+        }
+
         if ($this->senhaPlana !== $this->confirmaSenha) {
             $this->setErroMensagem('confirm-password', 'Senhas não correspondem.');
         }
@@ -103,26 +113,5 @@ class Usuario extends Modelo
             $objeto->senha = $registro['senha'];
         }
         return $objeto;
-    }
-
-    public static function buscarCompras($idUsuario)
-    {
-        $comando = DW3BancoDeDados::prepare(self::BUSCAR_COMPRAS);
-        $comando->bindValue(1, $idUsuario, PDO::PARAM_INT);
-        $comando->execute();
-        $registros = $comando->fetchAll();
-        $objetos = [];
-        foreach($registros as $registro) {
-            $produtoComprado = ['nome' => $registro['nome_produto'],
-                     'descricao' => $registro['descricao'],
-                     'preco' => $registro['preco'],
-                     'data' => $registro['data'],
-                     'id' => $registro['id_produtos_usuario'],
-                    ];
-
-            $objetos[] = $produtoComprado;
-        }
-
-        return $objetos;
     }
 }

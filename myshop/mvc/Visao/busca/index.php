@@ -1,9 +1,19 @@
-<main> 
+<main>
     <div class="container">
-        <h3>Alguns produtos</h3>
-        <hr>
+        <form method="get">          
+            <div class="busca">  
+                <div class="input-field col s6">
+                    <input id="busca" name="descricao" type="text" value="<?= $this->getGet('descricao') ?>">
+                    <label for="busca">Buscar por descrição</label>
+                </div> 
+                <button id="button-pesquisa" type="submit">
+                    <span class="material-icons left md-36">search</span>
+                </button>
+            </div>
+        </form>
+
         <div class="card-list">
-            <?php foreach ($produtos as $produto) : ?>
+            <?php foreach ($registrosBuscados as $produto) : ?>
                 <div class="div-card">
                     <div class="card small">
                         <div class="card-image waves-effect waves-block waves-light">
@@ -16,7 +26,7 @@
                             <span class="card-title activator grey-text text-darken-4">
                                 <?= $produto->getNomeProduto()?><i class="material-icons right">more_vert</i>
                             </span>
-                            <p><?= 'Preço: R$ ' . number_format($produto->getPreco(), 2, ',', '.') ?></p>
+                            <p><?= 'Preço: R$ ' . number_format($produto->getPreco(), 2, ',', '.')?></p>
                         </div>
                         <div class="card-reveal">
                             <span class="card-title grey-text text-darken-4"

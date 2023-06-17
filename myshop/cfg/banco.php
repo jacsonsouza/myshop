@@ -2,9 +2,9 @@
 
 $banco = [
     'driver' => 'mysql',
-    'servidor' => 'localhost',
+    'servidor' => 'db',
     'porta' => '3306',
     'banco' => 'myshop',
-    'usuario' => 'jacson-mysql',
-    'senha' => 'J42s85s37.',
+    'usuario' => 'root',
+    'senha' => 'jacson123',
 ];

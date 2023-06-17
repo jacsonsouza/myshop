@@ -8,12 +8,14 @@ use \Framework\DW3ImagemUpload;
 class Produto extends Modelo
 {
     const BUSCAR_TODOS = 'SELECT p.id_produto p_id_produto, nome_produto, descricao, preco, vendedor_id, u.nome u_nome FROM produtos p JOIN usuarios u ON (vendedor_id = u.id_usuario) WHERE vendido=0 ORDER BY p.id_produto LIMIT ? OFFSET ?';
+    const BUSCAR_RANDOM = 'SELECT p.id_produto p_id_produto, nome_produto, descricao, preco, vendedor_id, u.nome u_nome FROM produtos p JOIN usuarios u ON (vendedor_id = u.id_usuario) WHERE vendido=0 ORDER BY RAND() LIMIT ? OFFSET ?';
     const BUSCAR_ID = 'SELECT * FROM produtos WHERE id_produto = ? LIMIT 1';
     const INSERIR = 'INSERT INTO produtos(vendedor_id, nome_produto, descricao, preco, vendido) VALUES (?, ?, ?, ?, ?)';
     const MODIFICAR = 'UPDATE produtos SET vendido = 1 WHERE id_produto = ?';
     const INSERIR_COMPRA = 'INSERT INTO produtos_usuario(id_usuario, id_produto, date) VALUES (?, ?,CURDATE())';
     const DELETAR = 'DELETE FROM produtos WHERE id_produto = ?';
-    const CONTAR_TODOS = 'SELECT count(id_produto) FROM produtos';
+    const CONTAR_TODOS = 'SELECT count(id_produto) FROM produtos WHERE vendido = 0';
+    const PESQUISAR = 'SELECT p.id_produto p_id_produto, nome_produto, descricao, preco, vendedor_id, u.nome u_nome FROM produtos p JOIN usuarios u ON (vendedor_id = u.id_usuario) WHERE descricao LIKE "%"?"%" AND vendido=0 ORDER BY p.id_produto';
 
     private $id;
     private $usuarioId;
@@ -166,6 +168,35 @@ class Produto extends Modelo
         return $objetos;
     }
 
+    public static function buscarRandom($limit = 4, $offset = 0)
+    {
+        $comando = DW3BancoDeDados::prepare(self::BUSCAR_RANDOM);
+        $comando->bindValue(1, $limit, PDO::PARAM_INT);
+        $comando->bindValue(2, $offset, PDO::PARAM_INT);
+        $comando->execute();
+        $registros = $comando->fetchAll();
+        $objetos = [];
+        foreach ($registros as $registro) {
+            $usuario = new Usuario(
+                '',
+                $registro['u_nome'],
+                null,
+                '',
+                $registro['vendedor_id']
+            );
+            $objetos[] = new Produto(
+                null,
+                $registro['nome_produto'],
+                $registro['descricao'],
+                $registro['preco'],
+                null,
+                $usuario,
+                $registro['p_id_produto']
+            );
+        }
+        return $objetos;
+    }
+
     public static function contarTodos()
     {
         $registros = DW3BancoDeDados::query(self::CONTAR_TODOS);
@@ -182,13 +213,21 @@ class Produto extends Modelo
 
     protected function verificarErros()
     {
-        if (strlen($this->texto) < 3) {
-            $this->setErroMensagem('texto', 'Mínimo 3 caracteres.');
+        if (strlen($this->nomeProduto) < 5) {
+            $this->setErroMensagem('nomeProduto', 'Mínimo 5 caracteres!');
+        }
+
+        if (strlen($this->descricao) < 10) {
+            $this->setErroMensagem('descricao', 'Mínimo 10 caracteres!');
+        }
+
+        if (strlen($this->preco) == 0) {
+            $this->setErroMensagem('preco', 'Digite um preço válido!');
         }
 
         if (DW3ImagemUpload::existeUpload($this->imagem) 
                 && !DW3ImagemUpload::isValida($this->imagem)) {
-                    $this->setErroMensagem('imagem', 'Deve ser de no máximo 500 kb');
+                    $this->setErroMensagem('imagem', 'Imagem deve ser de no máximo 500 kb');
         } 
     }
 
@@ -205,5 +244,38 @@ class Produto extends Modelo
         $comando->bindValue(1, $idUsuario, PDO::PARAM_INT);
         $comando->bindValue(2, $idProduto, PDO::PARAM_INT);
         $comando->execute();
+    }
+
+    public static function pesquisar($pesquisa = [])
+    {
+        $palavraChave = '¡';
+
+        if (array_key_exists('descricao', $pesquisa))
+            $palavraChave = $pesquisa['descricao'];
+
+        $comando = DW3BancoDeDados::prepare(self::PESQUISAR);
+        $comando->bindValue(1, $palavraChave, PDO::PARAM_STR);
+        $comando->execute();
+        $registros = $comando->fetchAll();
+        $objetos = [];
+        foreach ($registros as $registro) {
+            $usuario = new Usuario(
+                '',
+                $registro['u_nome'],
+                null,
+                '',
+                $registro['vendedor_id']
+            );
+            $objetos[] = new Produto(
+                null,
+                $registro['nome_produto'],
+                $registro['descricao'],
+                $registro['preco'],
+                null,
+                $usuario,
+                $registro['p_id_produto']
+            );
+        }
+        return $objetos;
     }
 }
