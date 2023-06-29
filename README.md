@@ -1,1 +1,2 @@
-As senhas dos usuarios já cadastrados jacson@teste.com e maria@teste.com são 'teste'
+<h1>PHP project</h1>
+<p>Project web3 - utfpr</p>
